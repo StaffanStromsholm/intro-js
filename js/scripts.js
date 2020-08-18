@@ -1,6 +1,6 @@
 var registeredUsers = []; // this array stores valid usernames until the next pageload
 
-function validateForm(e){
+function validateForm(e) {
     e.preventDefault(); // stop the submit button from refreshing the page
     console.log('validating ....');
 
@@ -8,19 +8,22 @@ function validateForm(e){
     console.log('email: ' + validateEmail());
     console.log('password: ' + validatePassword());
 
-    if (validateUsername() 
-            && validateEmail() 
-            && validatePassword() 
-            && validatePhoneNumber()
-            && validateFirstName()
-            && validateLastName()
-        ) {
-        var _newUser = getUserDataObj();   
+    if (validateUsername()
+        && validateEmail()
+        && validatePassword()
+        && validatePhoneNumber()
+        && validateFirstName()
+        && validateLastName()
+    ) {
+        var _newUser = getUserDataObj();
         // add code to update registeredUsers array with new username and call render function
         // TODO
-        registeredUsers.push(_newUser);
-        renderRegisteredUsers();
-        document.registration.reset(); // reset form input fields
+
+            registeredUsers.push(_newUser.userName);
+            console.log(registeredUsers);
+            renderRegisteredUsers();
+            document.registration.reset(); // reset form input fields
+
     }
 }
 
@@ -39,8 +42,8 @@ function getUserDataObj() {
 function renderRegisteredUsers() {
     document.getElementById('registered-users').innerHTML = '';
 
-    registeredUsers.forEach(function(registeredUser){
-        var _newUser = document.createElement('li'); 
+    registeredUsers.forEach(function (registeredUser) {
+        var _newUser = document.createElement('li');
         _newUser.innerHTML = JSON.stringify(registeredUser);
         document.getElementById('registered-users').appendChild(_newUser);
     });
@@ -50,9 +53,9 @@ function renderRegisteredUsers() {
  * this function supposely validates submitted username
  * @returns [Boolean] true when valid, false otherwise
  */
-function validateUsername(){
+function validateUsername() {
     var _userName = getUserName();
-    
+
     return !checkSpace(_userName);
 }
 
@@ -60,9 +63,9 @@ function validateUsername(){
  * this function supposely validates submitted username
  * @returns [Boolean] true when valid, false otherwise
  */
-function validateFirstName(){
+function validateFirstName() {
     var _firstName = getFirstName();
-    
+
     return (_firstName !== '');
 }
 
@@ -70,9 +73,9 @@ function validateFirstName(){
  * this function supposely validates submitted username
  * @returns [Boolean] true when valid, false otherwise
  */
-function validateLastName(){
+function validateLastName() {
     var _lastName = getLastName();
-    
+
     return (_lastName !== '');
 }
 
@@ -80,9 +83,9 @@ function validateLastName(){
  * this function supposely validates submitted username
  * @returns [Boolean] true when valid, false otherwise
  */
-function validatePhoneNumber(){
+function validatePhoneNumber() {
     var _phoneNumber = getPhoneNumber();
-    
+
     return (!isNaN(_phoneNumber));
 }
 
@@ -90,7 +93,7 @@ function validatePhoneNumber(){
  * this function supposely validates submitted email
  * @returns [Boolean] true when valid, false otherwise
  */
-function validateEmail(){
+function validateEmail() {
     var _email = getEmail();
 
     if (checkSpace(_email) === true) {
@@ -99,20 +102,20 @@ function validateEmail(){
 
     // check for @
     var atSymbol = _email.indexOf('@');
-    if(atSymbol < 1) {
+    if (atSymbol < 1) {
         return false;
     }
 
     // check if there is a dot located less than 2 symbols away from the @ sign
     var dot = _email.indexOf('.');
-    if(dot <= atSymbol + 2) {
+    if (dot <= atSymbol + 2) {
         return false;
-    } 
+    }
 
     // check that the dot is not at the end
-    if (dot === _email.length - 1){
+    if (dot === _email.length - 1) {
         return false;
-    } 
+    }
 
     return true;
 }
@@ -156,57 +159,57 @@ function checkSpace(sample) {
  * @returns [Boolean] true when valid, false otherwise
  */
 function getUserName() {
-    if (typeof(document.registration.username.value) === 'undefined') {
+    if (typeof (document.registration.username.value) === 'undefined') {
         return '';
     } else {
         return document.registration.username.value;
-    }   
+    }
 }
 
 function getFirstName() {
-    if (typeof(document.registration.firstname.value) === 'undefined') {
+    if (typeof (document.registration.firstname.value) === 'undefined') {
         return '';
     } else {
         return document.registration.firstname.value;
-    }   
+    }
 }
 
 function getLastName() {
-    if (typeof(document.registration.lastname.value) === 'undefined') {
+    if (typeof (document.registration.lastname.value) === 'undefined') {
         return '';
     } else {
         return document.registration.lastname.value;
-    }   
+    }
 }
 
 function getPhoneNumber() {
-    if (typeof(document.registration.phonenumber.value) === 'undefined') {
+    if (typeof (document.registration.phonenumber.value) === 'undefined') {
         return '';
     } else {
         return document.registration.phonenumber.value;
-    }   
+    }
 }
 
 function getEmail() {
-    if (typeof(document.registration.email.value) === 'undefined') {
+    if (typeof (document.registration.email.value) === 'undefined') {
         return '';
     } else {
         return document.registration.email.value;
-    }   
+    }
 }
 
 function getPassword() {
-    if (typeof(document.registration.password.value) === 'undefined') {
+    if (typeof (document.registration.password.value) === 'undefined') {
         return '';
     } else {
         return document.registration.password.value;
-    }   
+    }
 }
 
 function getConfirmPassword() {
-    if (typeof(document.registration.password_confirm.value) === 'undefined') {
+    if (typeof (document.registration.password_confirm.value) === 'undefined') {
         return '';
     } else {
         return document.registration.password_confirm.value;
-    }   
+    }
 }
