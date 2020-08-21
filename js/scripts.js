@@ -9,9 +9,23 @@ function validateForm(e) {
   console.log("password: " + validatePassword());
 
   if (validateUsername() && validateEmail() && validatePassword()) {
-    var _newUser = getUserName();
+    var _newUser = {
+      username: getUserName(),
+      email: getEmail(),
+      password: getPassword(),
+    }; //modify ythis so that _newUser will be
+    // {username: 'user1', email: 'email@gmail.com', etc}
+
     // add code to update registeredUsers array with new user and call render function
     // TODO
+    // push new user to regissteredUsers array if the length is larger than 5
+    registeredUsers.push(_newUser);
+    if (registeredUsers.length > 5) {
+      registeredUsers.shift();
+    }
+
+    document.getElementById("registered-users").innerHTML = "";
+    renderRegisteredUsers();
     document.registration.reset(); // reset form input fields
   }
 }
@@ -19,7 +33,8 @@ function validateForm(e) {
 function renderRegisteredUsers() {
   registeredUsers.forEach(function (registeredUser) {
     var _newUser = document.createElement("li");
-    _newUser.innerHTML = registeredUser;
+    _newUser.innerHTML =
+      "user: " + registeredUser.username + " email: " + registeredUser.email;
     document.getElementById("registered-users").appendChild(_newUser);
   });
 }
@@ -108,13 +123,25 @@ function getUserName() {
 }
 
 function getEmail() {
-  // TODO
+  if (typeof document.registration.email.value === "undefined") {
+    return "";
+  } else {
+    return document.registration.email.value;
+  }
 }
 
 function getPassword() {
-  // TODO
+  if (typeof document.registration.password.value === "undefined") {
+    return "";
+  } else {
+    return document.registration.password.value;
+  }
 }
 
 function getConfirmPassword() {
-  // TODO
+  if (typeof document.registration.password_confirm.value === "undefined") {
+    return "";
+  } else {
+    return document.registration.password.value;
+  }
 }
