@@ -24,7 +24,7 @@ function validateForm(e) {
       registeredUsers.shift();
     }
 
-    document.getElementById("registered-users").innerHTML = "";
+    $('#registered-users').empty();
     renderRegisteredUsers();
     document.registration.reset(); // reset form input fields
   }
@@ -32,10 +32,11 @@ function validateForm(e) {
 
 function renderRegisteredUsers() {
   registeredUsers.forEach(function (registeredUser) {
-    var _newUser = document.createElement("li");
-    _newUser.innerHTML =
-      "user: " + registeredUser.username + " email: " + registeredUser.email;
-    document.getElementById("registered-users").appendChild(_newUser);
+    // var _newUser = document.createElement("li");
+    // _newUser.innerHTML =
+    //   "user: " + registeredUser.username + " email: " + registeredUser.email;
+    // document.getElementById("registered-users").appendChild(_newUser);
+    $('<li>').text(JSON.stringify(registeredUser)).appendTo('#registered-users');
   });
 }
 
@@ -115,7 +116,7 @@ function checkSpace(sample) {
  * @returns [Boolean] true when valid, false otherwise
  */
 function getUserName() {
-  if (typeof document.registration.username.value === "undefined") {
+  if (typeof ($('[name="username"]').val()) === 'undefined') {
     return "";
   } else {
     return document.registration.username.value;
@@ -123,7 +124,7 @@ function getUserName() {
 }
 
 function getEmail() {
-  if (typeof document.registration.email.value === "undefined") {
+  if (typeof ($('[name="email"]').val()) === "undefined") {
     return "";
   } else {
     return document.registration.email.value;
@@ -131,7 +132,7 @@ function getEmail() {
 }
 
 function getPassword() {
-  if (typeof document.registration.password.value === "undefined") {
+  if (typeof ($('[name="password"]').val()) === "undefined") {
     return "";
   } else {
     return document.registration.password.value;
@@ -139,7 +140,7 @@ function getPassword() {
 }
 
 function getConfirmPassword() {
-  if (typeof document.registration.password_confirm.value === "undefined") {
+  if (typeof ($('[name="password_confirm"]').val()) === "undefined") {
     return "";
   } else {
     return document.registration.password.value;
