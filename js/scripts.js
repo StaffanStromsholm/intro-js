@@ -156,18 +156,21 @@
   }
 
   var sliderEl = document.createElement('section');
-  sliderEl.classList.add('lazy', 'slider');
-  sliderEl.setAttribute('data-sizes', '50vw');
-  document.body.appendChild(sliderEl);
+  $(sliderEl).addClass('lazy', 'slider');
+  $(sliderEl).attr('data-sizes', '50vw');
+
+  //append slideshow to container div to get more padding so that the arrows show
+  var container = document.querySelector('.container');
+  container.append(sliderEl);
 
   function addSlide(imgUrl) {
     var slide = document.createElement('div');
     slide.classList.add('slideshow');
     var slideImage = document.createElement('img');
-    slideImage.setAttribute('data-lazy', imgUrl);
-    slideImage.setAttribute('data-srcset', imgUrl);
-    slideImage.setAttribute('data-sizes', '100vw');
-    slide.appendChild(slideImage);
+    $(slideImage).attr('data-lazy', imgUrl);
+    $(slideImage).attr('data-srcset', imgUrl);
+    $(slideImage).attr('data-sizes', '100vw');
+    $(slide).append(slideImage);
 
     sliderEl.appendChild(slide);
   }
@@ -186,12 +189,14 @@
 
   $(document).ready(function () {
     $(".lazy").slick({
-      lazyLoad: 'ondemand', // ondemand progressive anticipated
-      infinite: true,
-      autoplay: true,
-      autoplaySpeed: 2000,
-      arrows: true,
-      dots: true,
+      // lazyLoad: 'ondemand', // ondemand progressive anticipated
+      // infinite: true,
+      // autoplay: true,
+      // autoplaySpeed: 2000,
+      // arrows: true,
+      // dots: true,
+
+
 
     });
   })
