@@ -31,14 +31,16 @@ function validateForm(e) {
 }
 
 function renderRegisteredUsers() {
+  // $.each(registeredUsers, function (registeredUser) {
+  // var _newUser = document.createElement("li");
+  // _newUser.innerHTML =
+  //   "user: " + registeredUser.username + " email: " + registeredUser.email;
+  // document.getElementById("registered-users").appendChild(_newUser);
   registeredUsers.forEach(function (registeredUser) {
-    // var _newUser = document.createElement("li");
-    // _newUser.innerHTML =
-    //   "user: " + registeredUser.username + " email: " + registeredUser.email;
-    // document.getElementById("registered-users").appendChild(_newUser);
-    $('<li>').text(JSON.stringify(registeredUser)).appendTo('#registered-users');
-  });
-}
+    $('<li>' + registeredUser + '</li>').appendTo('#registered-users');
+  })
+};
+
 
 /**
  * this function supposely validates submitted username
@@ -116,33 +118,37 @@ function checkSpace(sample) {
  * @returns [Boolean] true when valid, false otherwise
  */
 function getUserName() {
-  if (typeof ($('[name="username"]').val()) === 'undefined') {
-    return "";
-  } else {
-    return document.registration.username.value;
-  }
+  // if (typeof ($('[name="username"]').val()) === 'undefined') {
+  //   return "";
+  // } else {
+  //   return document.registration.username.value;
+  // }
+  return $('[name="username"]').val();
 }
 
 function getEmail() {
-  if (typeof ($('[name="email"]').val()) === "undefined") {
-    return "";
-  } else {
-    return document.registration.email.value;
-  }
+  // if (typeof ($('[name="email"]').val()) === "undefined") {
+  //   return "";
+  // } else {
+  //   return document.registration.email.value;
+  // }
+  return $('[name="email"]').val();
 }
 
 function getPassword() {
-  if (typeof ($('[name="password"]').val()) === "undefined") {
-    return "";
-  } else {
-    return document.registration.password.value;
-  }
+  // if (typeof ($('[name="password"]').val()) === "undefined") {
+  //   return "";
+  // } else {
+  //   return document.registration.password.value;
+  // }
+  return $('[name="password"]').val();
 }
 
 function getConfirmPassword() {
-  if (typeof ($('[name="password_confirm"]').val()) === "undefined") {
-    return "";
-  } else {
-    return document.registration.password.value;
-  }
+  // if (typeof ($('[name="password_confirm"]').val()) === "undefined") {
+  //   return "";
+  // } else {
+  //   return document.registration.password.value;
+  // }
+  return $('[name="password_confirm"]').val();
 }
