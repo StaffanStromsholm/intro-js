@@ -1,5 +1,7 @@
 (function ($) {
-
+  var btn = document.querySelector('.btn');
+  console.log(btn)
+  btn.addEventListener('click', validateForm);
   var registeredUsers = []; // this array stores valid usernames until the next pageload
 
   function validateForm(e) {
@@ -22,28 +24,29 @@
       // TODO
       // push new user to regissteredUsers array if the length is larger than 5
       registeredUsers.push(_newUser);
+
       if (registeredUsers.length > 5) {
         registeredUsers.shift();
       }
 
       $('#registered-users').empty();
       renderRegisteredUsers();
+
       document.registration.reset(); // reset form input fields
     }
   }
 
   function renderRegisteredUsers() {
     // $.each(registeredUsers, function (registeredUser) {
-    // var _newUser = document.createElement("li");
-    // _newUser.innerHTML =
-    //   "user: " + registeredUser.username + " email: " + registeredUser.email;
-    // document.getElementById("registered-users").appendChild(_newUser);
+    // $('<li>' + registeredUser + '</li>').appendTo('#registered-users');
+    //   var _newUser = document.createElement("li");
+    //   _newUser.innerHTML = "user: " + registeredUser.username + " email: " + registeredUser.email;
+    //   document.getElementById("registered-users").appendChild(_newUser);
     registeredUsers.forEach(function (registeredUser) {
-      $('<li>' + registeredUser + '</li>').appendTo('#registered-users');
-    })
-  };
-
-
+      $('<li>' + JSON.stringify(registeredUser) + '</li>').appendTo('#registered-users');
+      // })
+    });
+  }
   /**
    * this function supposely validates submitted username
    * @returns [Boolean] true when valid, false otherwise
@@ -189,15 +192,12 @@
 
   $(document).ready(function () {
     $(".lazy").slick({
-      // lazyLoad: 'ondemand', // ondemand progressive anticipated
-      // infinite: true,
-      // autoplay: true,
-      // autoplaySpeed: 2000,
-      // arrows: true,
-      // dots: true,
-
-
-
+      lazyLoad: 'ondemand', // ondemand progressive anticipated
+      infinite: true,
+      autoplay: true,
+      autoplaySpeed: 2000,
+      arrows: true,
+      dots: true,
     });
   })
 })(window.jQuery)
