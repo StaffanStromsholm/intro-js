@@ -10,14 +10,17 @@
 
       $('#show').click(function () {
         // TODO: show theDiv element
+        $('#theDiv').fadeIn();
       });
 
       $('#hide').click(function () {
         // TODO: hide theDiv element
+        $('#theDiv').fadeOut();
       });
 
       $('#toggle').click(function () {
         // TODO: toggle hide/show theDiv Element
+        $('#theDiv').fadeToggle();
       });
 
       $('#fadein').click(function () {
@@ -27,23 +30,27 @@
 
       $('#fadeout').click(function () {
         $('#theDiv').fadeOut(2000, oncomplete); // 10 seconds in miliseconds
-        $('#theDiv2').fadeOut();
+        $('#theDiv2').fadeOut(10000);
       });
 
       $('#fadeto3').click(function () {
         // TODO: fade theDiv to 30% opactity in 2 seconds
+        $('#theDiv').fadeTo(2000, 0.3);
       });
 
       $('#fadeup').click(function () {
         // TODO: fade theDiv element to 100% in 5 seconds
+        $('#theDiv').fadeIn(5000);
       });
 
       $('#slideup').click(function () {
         // TODO: slide the element up
+        $('#theDiv').slideUp();
       });
 
       $('#slidedown').click(function () {
         // TODO: fade the element down
+        $('#theDiv').slideDown();
       });
 
       function clickPulsateButton() {
@@ -57,6 +64,8 @@
       $('#all').click(function () {
         // TODO: animate element to the right, and increase font size to 200
         // call oncomplete function when animation is completed
+        $('#theDiv').animate({ marginLeft: "500px", fontSize: "200px" }, oncomplete);
+        $('#theDiv2').animate({ marginLeft: "500px", fontSize: "200px" });
       });
 
       $('#all').click(moveRight);
@@ -108,7 +117,11 @@
       alert('Animation complete');
     }
 
-    
+    $('#toggle-slide').click(function () {
+      $('#theDiv').slideToggle();
+      $('#theDiv2').slideToggle();
+    })
+
   </script>
   <style type="text/css">
     #theDiv,
@@ -169,7 +182,7 @@
     <button id="toggle">Toggle</button>
     <button id="slideup">Slide Up</button>
     <button id="slidedown">Slide Down</button>
-    <button id="toggle">Toggle Slide</button>
+    <button id="toggle-slide">Toggle Slide</button>
   </div>
 </body>
 
