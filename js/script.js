@@ -107,9 +107,9 @@
 
 var clock = {
     constants: {
-        alpha: 360 / 60,
-        beta: 360 / 60,
-        delta: 360 / 12
+        alpha: 360 / 60, //second arm travel in a second
+        beta: 360 / 60, //minute arm travel in a minute
+        delta: 360 / 12 //hour arm travel in an hour
     },
     arms: {
         hour: document.getElementById('hour'),
@@ -144,7 +144,9 @@ var clock = {
         this.arms.hour.style.transform = `rotate(${this.angles.hour}deg)`;
     },
     adjustAngles: function () {
-        this.now.second++;
+
+        this.angles.second +=
+            this.now.second++;
         this.getAngles()
         this.positionClockArms();
     },
@@ -162,6 +164,9 @@ var clock = {
 }
 
 clock.init();
+var sound = new Audio('../ringtone.mp3')
+
+
 
 // clock.getNow();
 // clock.getAngles();
