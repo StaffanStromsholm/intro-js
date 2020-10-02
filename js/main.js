@@ -12,4 +12,3 @@ if (customScript !== null) { // if user has not set any customScript, the result
 } else { // if no customScript is found, do nothing but leave a message
     console.log('No custom script found. ');
 }
-
